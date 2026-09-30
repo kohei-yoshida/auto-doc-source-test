@@ -18,3 +18,7 @@ export function clearInputs(leftInput, rightInput, resultElement) {
   rightInput.value = "";
   resultElement.textContent = "Result: —";
 }
+
+export function operationForKey(key) {
+  return key === "Enter" ? "+" : null;
+}
