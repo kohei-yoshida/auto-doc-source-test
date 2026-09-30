@@ -4,7 +4,7 @@ A deliberately small web calculator used to prove an issue-to-code-to-documentat
 
 ## Calculator
 
-Open `index.html` through any static web server. It supports add, subtract, multiply, divide, clear, invalid-input feedback, and a dedicated divide-by-zero error.
+Open `index.html` through any static web server. It supports add, subtract, multiply, divide, clear, invalid-input feedback, and a dedicated divide-by-zero error. Pressing Enter in either number input performs addition.
 
 ```sh
 npm test
