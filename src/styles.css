@@ -1,0 +1,17 @@
+:root { font-family: Inter, ui-sans-serif, system-ui, sans-serif; color: #172033; background: #eef2f7; }
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px; }
+.calculator { width: min(560px, 100%); background: white; border-radius: 22px; padding: 36px; box-shadow: 0 22px 60px #23314d1f; }
+.eyebrow { color: #5b67db; font-size: 12px; font-weight: 800; letter-spacing: .15em; }
+h1 { margin: 8px 0; font-size: clamp(30px, 7vw, 48px); }
+.intro { color: #62708a; margin: 0 0 28px; }
+.inputs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+label { display: grid; gap: 7px; font-weight: 700; font-size: 13px; }
+input { width: 100%; border: 1px solid #cad1dd; border-radius: 10px; padding: 13px; font: inherit; }
+.operations { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 18px 0; }
+button { border: 0; border-radius: 10px; padding: 13px; background: #5362d9; color: white; font: inherit; font-weight: 750; cursor: pointer; }
+button:hover { background: #3f4dc2; }
+output { display: block; min-height: 52px; border-radius: 10px; background: #f1f4f9; padding: 15px; font-weight: 800; }
+output[data-state="error"] { background: #fff0f0; color: #b42318; }
+.secondary { width: 100%; margin-top: 10px; background: #26334c; }
+@media (max-width: 520px) { .calculator { padding: 24px; } .inputs { grid-template-columns: 1fr; } }

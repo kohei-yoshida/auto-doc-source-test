@@ -1,0 +1,26 @@
+name: Update documentation after merge
+on:
+  pull_request:
+    types: [closed]
+permissions:
+  contents: read
+  issues: read
+  pull-requests: read
+concurrency:
+  group: auto-doc-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+jobs:
+  update-docs:
+    if: github.event.pull_request.merged == true && github.event.pull_request.user.type != 'Bot'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Analyze change and open Docs PR
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-4.1-mini' }}
+          AUTO_DOC_GITHUB_TOKEN: ${{ secrets.AUTO_DOC_GITHUB_TOKEN }}
+          DOCS_REPO: kohei-yoshida/auto-doc-result-test
+        run: python scripts/update_docs.py
