@@ -82,8 +82,8 @@ def main():
     run("git", "config", "user.name", "github-actions[bot]", cwd=work); run("git", "config", "user.email", "41898282+github-actions[bot]@users.noreply.github.com", cwd=work)
     run("git", "add", ".", cwd=work); run("git", "commit", "-m", f"docs: update for source PR #{number}\n\n[auto-doc]", cwd=work); run("git", "push", "origin", branch, cwd=work)
     issue_links = "\n".join(f"- {i['html_url']}" for i in issues) or "- None detected"
-    changed = "\n".join(f"- `{f['filename']}`" for f in files)
-    body = f"""## Related issue(s)\n{issue_links}\n\n## Related implementation PR\n- {pr['html_url']}\n\n## Change summary\n{result['summary']}\n\n## Documentation updated\n{changed}\n\n## Why\n{result['reason']}\n\n<!-- auto-doc: source-pr-{number} -->\n\nFinal approval and merge must be performed by a human."""
+    updated = "\n".join(f"- `{item['path']}`" for item in result["files"])
+    body = f"""## Related issue(s)\n{issue_links}\n\n## Related implementation PR\n- {pr['html_url']}\n\n## Change summary\n{result['summary']}\n\n## Documentation updated\n{updated}\n\n## Why\n{result['reason']}\n\n<!-- auto-doc: source-pr-{number} -->\n\nFinal approval and merge must be performed by a human."""
     created = request(f"{API}/repos/{docs_repo}/pulls", token, "POST", {"title":f"docs: reflect source PR #{number}","head":branch,"base":"main","body":body})
     print(f"Created docs PR: {created['html_url']}")
 
